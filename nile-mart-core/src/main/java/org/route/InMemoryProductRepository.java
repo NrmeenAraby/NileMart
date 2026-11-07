@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,7 +22,7 @@ public class InMemoryProductRepository implements ProductRepository{
         Product p1 = Product.builder()
                 .name("Smartphone X5 128GB")
                 .sku("PH-X5-128")
-                .price(BigDecimal.valueOf(16000))
+                .price(BigDecimal.valueOf(16000).setScale(2, RoundingMode.HALF_UP))
                 .category("Electronics")
                 .isActive(true)
                 .stockQty(12)
@@ -29,7 +30,7 @@ public class InMemoryProductRepository implements ProductRepository{
         Product p2 = Product.builder()
                 .name("Fast Charger 20W")
                 .sku("ACC-CHG-20W")
-                .price(BigDecimal.valueOf(650))
+                .price(BigDecimal.valueOf(650).setScale(2, RoundingMode.HALF_UP))
                 .category("Electronics")
                 .isActive(true)
                 .stockQty(40)
@@ -38,7 +39,7 @@ public class InMemoryProductRepository implements ProductRepository{
                 .sku("ACC-BUDS-6")
                 .name("Wireless Earbuds")
                 .category("Electronics")
-                .price(BigDecimal.valueOf(1100))
+                .price(BigDecimal.valueOf(1100).setScale(2, RoundingMode.HALF_UP))
                 .stockQty(8)
                 .isActive(true)
                 .build();
@@ -47,7 +48,7 @@ public class InMemoryProductRepository implements ProductRepository{
                 .sku("FSH-GAL-001")
                 .name("Cotton Galabeya")
                 .category("Fashion")
-                .price(BigDecimal.valueOf(900))
+                .price(BigDecimal.valueOf(900).setScale(2, RoundingMode.HALF_UP))
                 .stockQty(25)
                 .isActive(true)
                 .build();
@@ -56,7 +57,7 @@ public class InMemoryProductRepository implements ProductRepository{
                 .sku("HOM-PAN-28")
                 .name("Non-stick Frying Pan 28cm")
                 .category("Home & Kitchen")
-                .price(BigDecimal.valueOf(1200))
+                .price(BigDecimal.valueOf(1200).setScale(2, RoundingMode.HALF_UP))
                 .stockQty(3)
                 .isActive(true)
                 .build();
@@ -65,7 +66,7 @@ public class InMemoryProductRepository implements ProductRepository{
                 .sku("HOM-SPC-RCK")
                 .name("Wooden Spice Rack")
                 .category("Home & Kitchen")
-                .price(BigDecimal.valueOf(750))
+                .price(BigDecimal.valueOf(750).setScale(2, RoundingMode.HALF_UP))
                 .stockQty(10)
                 .isActive(true)
                 .build();
@@ -74,7 +75,7 @@ public class InMemoryProductRepository implements ProductRepository{
                 .sku("BTY-SUN-50")
                 .name("Sun Cream SPF50")
                 .category("Beauty")
-                .price(BigDecimal.valueOf(350))
+                .price(BigDecimal.valueOf(350).setScale(2, RoundingMode.HALF_UP))
                 .stockQty(0)
                 .isActive(true)
                 .build();
@@ -83,7 +84,7 @@ public class InMemoryProductRepository implements ProductRepository{
                 .sku("BK-CAI-TRI")
                 .name("The Cairo Trilogy")
                 .category("Books")
-                .price(BigDecimal.valueOf(450))
+                .price(BigDecimal.valueOf(450).setScale(2, RoundingMode.HALF_UP))
                 .stockQty(15)
                 .isActive(true)
                 .build();
