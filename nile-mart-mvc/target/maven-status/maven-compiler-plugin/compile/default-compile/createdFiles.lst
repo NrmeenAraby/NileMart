@@ -1,0 +1,8 @@
+org\route\model\Product.class
+org\route\repository\InMemoryProductRepository.class
+org\route\controller\ProductController.class
+org\route\config\WebAppInitializer.class
+org\route\model\Product$ProductBuilder.class
+org\route\service\ProductService.class
+org\route\config\WebConfig.class
+org\route\repository\ProductRepository.class

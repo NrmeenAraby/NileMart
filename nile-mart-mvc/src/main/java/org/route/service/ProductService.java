@@ -2,7 +2,7 @@ package org.route.service;
 
 
 import org.route.model.Product;
-import org.route.repository.ProductRepository;
+import org.route.repository.product.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

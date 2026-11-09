@@ -1,4 +1,4 @@
-package org.route.repository;
+package org.route.repository.product;
 
 import jakarta.annotation.PostConstruct;
 import org.route.model.Product;
