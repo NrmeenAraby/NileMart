@@ -1,12 +1,17 @@
 D:\JavaSpringBoot\NileMart\nile-mart-mvc\src\main\java\org\route\config\WebAppInitializer.java
 D:\JavaSpringBoot\NileMart\nile-mart-mvc\src\main\java\org\route\config\WebConfig.java
 D:\JavaSpringBoot\NileMart\nile-mart-mvc\src\main\java\org\route\controller\BrandController.java
+D:\JavaSpringBoot\NileMart\nile-mart-mvc\src\main\java\org\route\controller\CategoryController.java
 D:\JavaSpringBoot\NileMart\nile-mart-mvc\src\main\java\org\route\controller\ProductController.java
 D:\JavaSpringBoot\NileMart\nile-mart-mvc\src\main\java\org\route\model\Brand.java
+D:\JavaSpringBoot\NileMart\nile-mart-mvc\src\main\java\org\route\model\Category.java
 D:\JavaSpringBoot\NileMart\nile-mart-mvc\src\main\java\org\route\model\Product.java
 D:\JavaSpringBoot\NileMart\nile-mart-mvc\src\main\java\org\route\repository\brand\BrandRepository.java
 D:\JavaSpringBoot\NileMart\nile-mart-mvc\src\main\java\org\route\repository\brand\InMemoryBrandRepository.java
+D:\JavaSpringBoot\NileMart\nile-mart-mvc\src\main\java\org\route\repository\category\CategoryRepository.java
+D:\JavaSpringBoot\NileMart\nile-mart-mvc\src\main\java\org\route\repository\category\InMemoryCategoryRepository.java
 D:\JavaSpringBoot\NileMart\nile-mart-mvc\src\main\java\org\route\repository\product\InMemoryProductRepository.java
 D:\JavaSpringBoot\NileMart\nile-mart-mvc\src\main\java\org\route\repository\product\ProductRepository.java
 D:\JavaSpringBoot\NileMart\nile-mart-mvc\src\main\java\org\route\service\BrandService.java
+D:\JavaSpringBoot\NileMart\nile-mart-mvc\src\main\java\org\route\service\CategoryService.java
 D:\JavaSpringBoot\NileMart\nile-mart-mvc\src\main\java\org\route\service\ProductService.java

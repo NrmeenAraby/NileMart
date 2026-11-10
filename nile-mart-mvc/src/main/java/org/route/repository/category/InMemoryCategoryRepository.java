@@ -3,9 +3,10 @@ package org.route.repository.category;
 import jakarta.annotation.PostConstruct;
 import org.route.model.Brand;
 import org.route.model.Category;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
-
+@Repository
 public class InMemoryCategoryRepository implements CategoryRepository{
     Map<String, Category> categories=new HashMap<>();
     @Override
@@ -83,7 +84,7 @@ public class InMemoryCategoryRepository implements CategoryRepository{
                 .build());
 
         categories.put("mens-clothing", Category.builder()
-                .name("Men’s Clothing")
+                .name("Men's Clothing")
                 .slug("mens-clothing")
                 .parentSlug("fashion")
                 .displayOrder(1)
