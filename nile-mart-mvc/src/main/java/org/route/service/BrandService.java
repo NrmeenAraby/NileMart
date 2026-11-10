@@ -26,4 +26,15 @@ public class BrandService {
         }
         return availableBrands;
     }
+    public boolean isNameTaken(String name){
+        return brandRepository.findAll().stream()
+                .anyMatch(brand -> brand.getName().equalsIgnoreCase(name));
+    }
+    public boolean isSlugTaken(String slug){
+        return brandRepository.findBySlug(slug).isPresent();
+    }
+
+    public void saveBrand(Brand brand) {
+        brandRepository.save(brand);
+    }
 }

@@ -16,7 +16,7 @@ public class InMemoryBrandRepository implements BrandRepository{
 
     @Override
     public Optional<Brand> findBySlug(String slug) {
-        return Optional.of(brands.get(slug));
+        return Optional.ofNullable(brands.get(slug));
     }
 
     @Override
