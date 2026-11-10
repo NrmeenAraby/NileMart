@@ -11,5 +11,6 @@ public class Brand {
     private String name;
     @NotBlank
     private final String slug;
+    @Builder.Default
     private boolean active =true;
 }

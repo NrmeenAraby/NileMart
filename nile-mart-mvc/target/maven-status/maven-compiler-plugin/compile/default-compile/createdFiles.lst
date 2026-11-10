@@ -1,8 +1,14 @@
+org\route\repository\product\ProductRepository.class
 org\route\model\Product.class
-org\route\repository\InMemoryProductRepository.class
+org\route\model\Brand.class
+org\route\repository\brand\BrandRepository.class
 org\route\controller\ProductController.class
+org\route\repository\brand\InMemoryBrandRepository.class
+org\route\repository\product\InMemoryProductRepository.class
 org\route\config\WebAppInitializer.class
+org\route\controller\BrandController.class
+org\route\service\BrandService.class
 org\route\model\Product$ProductBuilder.class
 org\route\service\ProductService.class
 org\route\config\WebConfig.class
-org\route\repository\ProductRepository.class
+org\route\model\Brand$BrandBuilder.class
