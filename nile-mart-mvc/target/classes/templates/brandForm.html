@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nile-Mart | New Brand</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f5f5f5;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        nav {
+            margin-bottom: 30px;
+        }
+
+        nav a {
+            margin-right: 15px;
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        form {
+            background: white;
+            padding: 25px;
+            width: 400px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .error {
+            color: red;
+            font-size: 13px;
+            margin-top: -10px;
+            margin-bottom: 12px;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+    <a th:href="@{/products}">Products</a>
+    <a th:href="@{/categories}">Categories</a>
+    <a th:href="@{/brands}">Brands</a>
+</nav>
+
+<h1>New Brand</h1>
+
+<form th:action="@{/brands}" th:object="${brand}" method="post">
+
+    <label for="name">Name</label>
+    <input type="text" id="name" th:field="*{name}">
+    <span class="error" th:if="${#fields.hasErrors('name')}"
+          th:errors="*{name}"></span>
+
+    <label for="slug">Slug</label>
+    <input type="text" id="slug" th:field="*{slug}">
+    <span class="error" th:if="${#fields.hasErrors('slug')}"
+          th:errors="*{slug}"></span>
+
+    <button type="submit">Save Brand</button>
+
+</form>
+
+</body>
+</html>

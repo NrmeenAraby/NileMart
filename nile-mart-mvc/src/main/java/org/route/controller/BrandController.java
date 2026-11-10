@@ -22,4 +22,10 @@ public class BrandController {
         model.addAttribute("availableBrands",brands);
         return "brands";
     }
+    @GetMapping("/new")
+    public String showForm(Model model){
+        model.addAttribute("brand",Brand.builder().build());
+        return "brandForm";
+    }
+
 }
