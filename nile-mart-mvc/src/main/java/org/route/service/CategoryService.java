@@ -19,7 +19,7 @@ public class CategoryService {
 
     public List<Category> findTobLvlCategories(){
         return categoryRepository.findAll().stream()
-                .filter(category -> category.getParentSlug().isBlank())
+                .filter(category -> normalizeParentSlug(category.getParentSlug()).isEmpty())
                 .toList();
     }
     public List<Category> findActiveTobLvlCategories(){
