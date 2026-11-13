@@ -32,4 +32,5 @@ public class ProductService {
     public boolean isProductExist(String sku) {
         return productRepository.findBySku(sku) != null;
     }
+
 }

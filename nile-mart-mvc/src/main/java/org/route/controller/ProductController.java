@@ -55,6 +55,15 @@ public class ProductController {
         if (productService.isProductExist(product.getSku())) {
             result.rejectValue("sku", "400", "sku is already exist");
         }
+        if (!categoryService.isSubCategory(product.getCategory())) {
+            result.rejectValue("category", "invalid",
+                    "Please select a valid subcategory.");
+        }
+        if (product.getBrandSlug() != null && !product.getBrandSlug().isEmpty()
+                && !brandService.isBrandExistAndActive(product.getBrandSlug())) {
+            result.rejectValue("brandSlug", "invalid",
+                    "Please select an active brand.");
+        }
         if (result.hasErrors()) {
             model.addAttribute("availableBrands",brandService.getAvailableBrands());
             model.addAttribute("subCategories",categoryService.findSubCategories());

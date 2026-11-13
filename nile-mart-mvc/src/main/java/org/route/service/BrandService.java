@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -39,5 +40,9 @@ public class BrandService {
     public Map<String,String> getBrandNames(){
         return brandRepository.findAll().stream()
                 .collect(Collectors.toMap(Brand::getSlug,Brand::getName));
+    }
+    public  boolean isBrandExistAndActive(String brandSlug){
+        Optional<Brand>brand=brandRepository.findBySlug(brandSlug);
+        return brand.isPresent()&&brand.get().isActive();
     }
 }

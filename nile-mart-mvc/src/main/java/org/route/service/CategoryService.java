@@ -85,4 +85,8 @@ public class CategoryService {
         return categoryRepository.findAll().stream()
                 .collect(Collectors.toMap(Category::getSlug,Category::getName));
     }
+    public boolean isSubCategory(String categorySlug){
+        Optional<Category> category=categoryRepository.findBySlug(categorySlug);
+        return category.isPresent() && !normalizeParentSlug(category.get().getParentSlug()).isEmpty();
+    }
 }
