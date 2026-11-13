@@ -3,6 +3,8 @@ package org.route.controller;
 
 import jakarta.validation.Valid;
 import org.route.model.Product;
+import org.route.service.BrandService;
+import org.route.service.CategoryService;
 import org.route.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,9 +19,13 @@ import java.util.List;
 public class ProductController {
 
     private final ProductService productService;
+    private final BrandService brandService;
+    private final CategoryService categoryService;
 
-    public ProductController(ProductService productService) {
+    public ProductController(ProductService productService, BrandService brandService, CategoryService categoryService) {
         this.productService = productService;
+        this.brandService = brandService;
+        this.categoryService = categoryService;
     }
 
     @GetMapping("/products")
@@ -32,17 +38,26 @@ public class ProductController {
     @GetMapping("/new")
     public String showForm(Model model) {
         model.addAttribute("product", new Product());
+        model.addAttribute("availableBrands",brandService.getAvailableBrands());
+        model.addAttribute("subCategories",categoryService.findSubCategories());
         return "productForm";
     }
 
     @PostMapping("/products")
     public String addProduct(@ModelAttribute("product") @Valid Product product,
-                             BindingResult result) {
+                             BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("availableBrands",brandService.getAvailableBrands());
+            model.addAttribute("subCategories",categoryService.findSubCategories());
+            return "productForm";
+        }
         if (productService.isProductExist(product.getSku())) {
             result.rejectValue("sku", "400", "sku is already exist");
         }
         if (result.hasErrors()) {
-            return "redirect:/new";
+            model.addAttribute("availableBrands",brandService.getAvailableBrands());
+            model.addAttribute("subCategories",categoryService.findSubCategories());
+            return "productForm";
         }
         productService.saveProduct(product);
         return "redirect:/products";

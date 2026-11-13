@@ -6,6 +6,7 @@ import org.route.repository.category.CategoryRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class CategoryService {
@@ -14,8 +15,10 @@ public class CategoryService {
     public CategoryService(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
-    public List<Category> findAllCategories(){
-        return categoryRepository.findAll();
+    public List<Category> findSubCategories(){
+        return categoryRepository.findAll().stream()
+                .filter(category -> !normalizeParentSlug(category.getParentSlug()).isEmpty())
+                .toList();
     }
 
     public List<Category> findTobLvlCategories(){
@@ -75,8 +78,8 @@ public class CategoryService {
         return category.isPresent()&& normalizeParentSlug(category.get().getParentSlug()).isEmpty();
     }
 
-
     public void save(Category category) {
         categoryRepository.save(category);
     }
+
 }

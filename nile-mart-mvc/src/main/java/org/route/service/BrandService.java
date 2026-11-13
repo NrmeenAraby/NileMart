@@ -1,11 +1,14 @@
 package org.route.service;
 
 import org.route.model.Brand;
+import org.route.model.Category;
 import org.route.repository.brand.BrandRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class BrandService {
@@ -18,13 +21,9 @@ public class BrandService {
         return brandRepository.findAll();
     }
     public List<Brand> getAvailableBrands(){
-        List<Brand> availableBrands=new ArrayList<>();
-        for(Brand brand:brandRepository.findAll()){
-            if(brand.isActive()) {
-                availableBrands.add(brand);
-            }
-        }
-        return availableBrands;
+        return brandRepository.findAll().stream()
+                .filter(Brand::isActive)
+                .toList();
     }
     public boolean isNameTaken(String name){
         return brandRepository.findAll().stream()
@@ -37,4 +36,5 @@ public class BrandService {
     public void saveBrand(Brand brand) {
         brandRepository.save(brand);
     }
+
 }
