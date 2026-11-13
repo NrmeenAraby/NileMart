@@ -36,5 +36,8 @@ public class BrandService {
     public void saveBrand(Brand brand) {
         brandRepository.save(brand);
     }
-
+    public Map<String,String> getBrandNames(){
+        return brandRepository.findAll().stream()
+                .collect(Collectors.toMap(Brand::getSlug,Brand::getName));
+    }
 }

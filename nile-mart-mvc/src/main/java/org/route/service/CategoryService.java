@@ -81,5 +81,8 @@ public class CategoryService {
     public void save(Category category) {
         categoryRepository.save(category);
     }
-
+    public Map<String,String> getCategoryNames(){
+        return categoryRepository.findAll().stream()
+                .collect(Collectors.toMap(Category::getSlug,Category::getName));
+    }
 }

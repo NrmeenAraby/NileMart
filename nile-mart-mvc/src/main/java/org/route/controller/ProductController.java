@@ -30,8 +30,9 @@ public class ProductController {
 
     @GetMapping("/products")
     public String getProducts(Model model) {
-        List<Product> products =  productService.getAvailableProducts();
-        model.addAttribute("availableProducts", products);
+        model.addAttribute("availableProducts", productService.getAvailableProducts());
+        model.addAttribute("categoryNames", categoryService.getCategoryNames());
+        model.addAttribute("brandNames", brandService.getBrandNames());
         return "products";
     }
 
