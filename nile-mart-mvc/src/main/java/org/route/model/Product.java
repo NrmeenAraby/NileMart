@@ -25,4 +25,5 @@ public class Product {
     private BigDecimal price;
     @PositiveOrZero
     private Integer inStock;
+    private String brandSlug;
 }

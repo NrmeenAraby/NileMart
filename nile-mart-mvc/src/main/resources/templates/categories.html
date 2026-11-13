@@ -78,15 +78,16 @@
     <tbody>
     <tr th:each="category : ${categories}">
         <td>
-            <span th:if="${!#strings.isEmpty(category.parentSlug)}">&#8212; </span>
+            <span th:if="${category.parentName != null}">&#8212; </span>
             <span th:text="${category.name}"></span>
         </td>
         <td th:text="${category.slug}"></td>
         <td>
-            <span th:if="${#strings.isEmpty(category.parentSlug)}">&#8212;</span>
-            <span th:unless="${#strings.isEmpty(category.parentSlug)}"
-                  th:text="${category.parentSlug}"></span>
-        </td>        <td th:text="${category.displayOrder}"></td>
+            <span th:if="${category.parentName == null}">&#8212;</span>
+            <span th:unless="${category.parentName == null}"
+                  th:text="${category.parentName}"></span>
+        </td>
+        <td th:text="${category.displayOrder}"></td>
         <td th:text="${category.active ? 'Yes' : 'No'}"></td>
     </tr>
     </tbody>

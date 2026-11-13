@@ -3,6 +3,7 @@ D:\JavaSpringBoot\NileMart\nile-mart-mvc\src\main\java\org\route\config\WebConfi
 D:\JavaSpringBoot\NileMart\nile-mart-mvc\src\main\java\org\route\controller\BrandController.java
 D:\JavaSpringBoot\NileMart\nile-mart-mvc\src\main\java\org\route\controller\CategoryController.java
 D:\JavaSpringBoot\NileMart\nile-mart-mvc\src\main\java\org\route\controller\ProductController.java
+D:\JavaSpringBoot\NileMart\nile-mart-mvc\src\main\java\org\route\dto\CategoryDisplay.java
 D:\JavaSpringBoot\NileMart\nile-mart-mvc\src\main\java\org\route\model\Brand.java
 D:\JavaSpringBoot\NileMart\nile-mart-mvc\src\main\java\org\route\model\Category.java
 D:\JavaSpringBoot\NileMart\nile-mart-mvc\src\main\java\org\route\model\Product.java

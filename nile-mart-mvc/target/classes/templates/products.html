@@ -54,6 +54,7 @@
         <th>Price</th>
         <th>Stock</th>
         <th>Category</th>
+        <th>Brand</th>
     </tr>
     </thead>
 
@@ -63,7 +64,12 @@
         <td th:text="${product.name}"></td>
         <td th:text="${product.price}"></td>
         <td th:text="${product.inStock}"></td>
-        <td th:text="${product.category}"></td>
+        <td th:text="${categoryNames[product.category]}"></td>
+        <td>
+            <span th:if="${#strings.isEmpty(product.brandSlug)}">&#8212;</span>
+            <span th:unless="${#strings.isEmpty(product.brandSlug)}"
+                  th:text="${brandNames[product.brandSlug]}"></span>
+        </td>
     </tr>
     </tbody>
 </table>
