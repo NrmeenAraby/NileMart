@@ -61,7 +61,7 @@
     <a th:href="@{/categories}">Categories</a>
     <a th:href="@{/brands}">Brands</a>
 </nav>
-
+<a th:href="@{/brands/new}">Add Brand</a>
 <h1>Brands</h1>
 
 <table>
@@ -74,7 +74,7 @@
     </thead>
 
     <tbody>
-    <tr th:each="brand : ${availableBrands}">
+    <tr th:each="brand : ${brands}">
         <td th:text="${brand.name}"></td>
         <td th:text="${brand.slug}"></td>
         <td th:text="${brand.active ? 'Yes' : 'No'}"></td>

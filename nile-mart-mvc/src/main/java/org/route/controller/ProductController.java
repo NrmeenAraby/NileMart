@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.List;
 
 @Controller
 public class ProductController {
@@ -36,7 +35,7 @@ public class ProductController {
         return "products";
     }
 
-    @GetMapping("/new")
+    @GetMapping("/products/new")
     public String showForm(Model model) {
         model.addAttribute("product", new Product());
         model.addAttribute("availableBrands",brandService.getAvailableBrands());
@@ -53,7 +52,7 @@ public class ProductController {
             return "productForm";
         }
         if (productService.isProductExist(product.getSku())) {
-            result.rejectValue("sku", "400", "sku is already exist");
+            result.rejectValue("sku", "duplicate", "sku is already exist");
         }
         if (!categoryService.isSubCategory(product.getCategory())) {
             result.rejectValue("category", "invalid",

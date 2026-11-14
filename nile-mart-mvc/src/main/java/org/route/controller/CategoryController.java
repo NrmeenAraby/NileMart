@@ -42,8 +42,13 @@ public class CategoryController {
         if(categoryService.isDisplayOrderTaken(parentSlug,category.getDisplayOrder())){
             result.rejectValue("displayOrder","duplicate","This display order is already taken.");
         }
-        if(categoryService.isNameTaken(parentSlug,category.getName())){
-            result.rejectValue("name","duplicate","This name is already taken.");
+        if (categoryService.isNameTaken(parentSlug, category.getName())) {
+            String message = parentSlug.isEmpty()
+                    ? "A category with this name already exists at the top level."
+                    : "A category with this name already exists under "
+                    + categoryService.findBySlug(parentSlug).get().getName();
+
+            result.rejectValue("name", "duplicate", message);
         }
         if(!parentSlug.isEmpty() && !categoryService.isParentCategory(parentSlug)){
             result.rejectValue("parentSlug","invalid","Parent must be an existing top-level category.");
@@ -59,4 +64,6 @@ public class CategoryController {
         categoryService.save(category);
         return "redirect:/categories";
     }
+
+
 }
