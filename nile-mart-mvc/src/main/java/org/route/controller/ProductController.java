@@ -36,7 +36,7 @@ public class ProductController {
         return "products";
     }
 
-    @GetMapping("/new")
+    @GetMapping("/products/new")
     public String showForm(Model model) {
         model.addAttribute("product", new Product());
         model.addAttribute("availableBrands",brandService.getAvailableBrands());
@@ -58,6 +58,10 @@ public class ProductController {
         if (!categoryService.isSubCategory(product.getCategory())) {
             result.rejectValue("category", "invalid",
                     "Please select a valid subcategory.");
+        }
+        if (!categoryService.isActiveCategory(product.getCategory())) {
+            result.rejectValue("category", "invalid",
+                    "Please select an active subcategory.");
         }
         if (product.getBrandSlug() != null && !product.getBrandSlug().isEmpty()
                 && !brandService.isBrandExistAndActive(product.getBrandSlug())) {

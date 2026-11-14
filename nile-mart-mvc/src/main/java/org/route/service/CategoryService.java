@@ -18,6 +18,7 @@ public class CategoryService {
     public List<Category> findSubCategories(){
         return categoryRepository.findAll().stream()
                 .filter(category -> !normalizeParentSlug(category.getParentSlug()).isEmpty())
+                .filter(Category::isActive)
                 .toList();
     }
 
@@ -88,5 +89,9 @@ public class CategoryService {
     public boolean isSubCategory(String categorySlug){
         Optional<Category> category=categoryRepository.findBySlug(categorySlug);
         return category.isPresent() && !normalizeParentSlug(category.get().getParentSlug()).isEmpty();
+    }
+    public boolean isActiveCategory(String categorySlug){
+        Optional<Category> category=categoryRepository.findBySlug(categorySlug);
+        return category.isPresent() && category.get().isActive();
     }
 }
