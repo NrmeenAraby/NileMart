@@ -76,7 +76,7 @@ public class CategoryService {
     }
     public boolean isParentCategory(String slug){
         Optional<Category> category=categoryRepository.findBySlug(slug);
-        return category.isPresent()&& normalizeParentSlug(category.get().getParentSlug()).isEmpty();
+        return category.isPresent()  && category.get().isActive()&& normalizeParentSlug(category.get().getParentSlug()).isEmpty();
     }
 
     public void save(Category category) {
@@ -88,11 +88,7 @@ public class CategoryService {
     }
     public boolean isSubCategory(String categorySlug){
         Optional<Category> category=categoryRepository.findBySlug(categorySlug);
-        return category.isPresent() && !normalizeParentSlug(category.get().getParentSlug()).isEmpty();
-    }
-    public boolean isActiveCategory(String categorySlug){
-        Optional<Category> category=categoryRepository.findBySlug(categorySlug);
-        return category.isPresent() && category.get().isActive();
+        return category.isPresent()  && category.get().isActive() && !normalizeParentSlug(category.get().getParentSlug()).isEmpty();
     }
     public Optional<Category> findBySlug(String slug) {
         return categoryRepository.findBySlug(slug);

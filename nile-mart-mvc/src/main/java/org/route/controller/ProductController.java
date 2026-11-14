@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.List;
 
 @Controller
 public class ProductController {
@@ -53,15 +52,11 @@ public class ProductController {
             return "productForm";
         }
         if (productService.isProductExist(product.getSku())) {
-            result.rejectValue("sku", "400", "sku is already exist");
+            result.rejectValue("sku", "duplicate", "sku is already exist");
         }
         if (!categoryService.isSubCategory(product.getCategory())) {
             result.rejectValue("category", "invalid",
                     "Please select a valid subcategory.");
-        }
-        if (!categoryService.isActiveCategory(product.getCategory())) {
-            result.rejectValue("category", "invalid",
-                    "Please select an active subcategory.");
         }
         if (product.getBrandSlug() != null && !product.getBrandSlug().isEmpty()
                 && !brandService.isBrandExistAndActive(product.getBrandSlug())) {
