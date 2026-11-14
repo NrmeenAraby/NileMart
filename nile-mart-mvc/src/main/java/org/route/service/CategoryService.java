@@ -94,4 +94,7 @@ public class CategoryService {
         Optional<Category> category=categoryRepository.findBySlug(categorySlug);
         return category.isPresent() && category.get().isActive();
     }
+    public Optional<Category> findBySlug(String slug) {
+        return categoryRepository.findBySlug(slug);
+    }
 }
