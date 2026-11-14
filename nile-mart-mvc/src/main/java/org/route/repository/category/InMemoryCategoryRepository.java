@@ -1,14 +1,13 @@
 package org.route.repository.category;
 
 import jakarta.annotation.PostConstruct;
-import org.route.model.Brand;
 import org.route.model.Category;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
 @Repository
 public class InMemoryCategoryRepository implements CategoryRepository{
-    Map<String, Category> categories=new HashMap<>();
+    private final Map<String, Category> categories=new HashMap<>();
     @Override
     public List<Category> findAll() {
         return new ArrayList<>(categories.values());
@@ -24,7 +23,7 @@ public class InMemoryCategoryRepository implements CategoryRepository{
         categories.put(category.getSlug(),category);
     }
     @PostConstruct
-    void loadBrands(){
+    void loadCategories(){
         categories.put("electronics", Category.builder()
                 .name("Electronics")
                 .slug("electronics")

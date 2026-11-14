@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.naming.Binding;
+
 import java.util.List;
 
 @Controller
@@ -24,7 +24,7 @@ public class BrandController {
     @GetMapping
     public String getBrands(Model model){
         List<Brand> brands=brandService.getAllBrands();
-        model.addAttribute("availableBrands",brands);
+        model.addAttribute("brands",brands);
         return "brands";
     }
     @GetMapping("/new")

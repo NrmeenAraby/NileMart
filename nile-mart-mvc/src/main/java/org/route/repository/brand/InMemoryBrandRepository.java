@@ -8,7 +8,7 @@ import java.util.*;
 
 @Repository
 public class InMemoryBrandRepository implements BrandRepository{
-    Map<String,Brand> brands=new HashMap<>();
+    private final Map<String,Brand> brands=new HashMap<>();
     @Override
     public List<Brand> findAll() {
         return new ArrayList<>(brands.values());

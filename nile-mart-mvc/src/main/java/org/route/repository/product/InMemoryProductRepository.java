@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 public class InMemoryProductRepository implements ProductRepository {
-    List<Product> myProducts = new ArrayList<>();
+    private final List<Product> myProducts = new ArrayList<>();
 
     @PostConstruct
     void init() {
