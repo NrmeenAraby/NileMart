@@ -17,8 +17,8 @@ public class CategoryService {
     }
     public List<Category> findSubCategories(){
         return categoryRepository.findAll().stream()
-                .filter(category -> !normalizeParentSlug(category.getParentSlug()).isEmpty())
                 .filter(Category::isActive)
+                .filter(category -> !normalizeParentSlug(category.getParentSlug()).isEmpty())
                 .toList();
     }
 
@@ -35,6 +35,7 @@ public class CategoryService {
 
     public List<Category> findSubCategoriesOfParent(String parentSlug){
         return categoryRepository.findAll().stream()
+                .filter(Category::isActive)
                 .filter(category -> Objects.equals(normalizeParentSlug(category.getParentSlug()),
                         normalizeParentSlug(parentSlug)))
                 .toList();
@@ -46,6 +47,9 @@ public class CategoryService {
                 .sorted(Comparator.comparing(Category::getDisplayOrder))
                 .toList();
         for(Category parent:parents){
+            if(isParentCategoryActive(parent.getParentSlug()))
+                continue;
+
             result.add(new CategoryDisplay(parent.getName(),parent.getSlug(),null,parent.getDisplayOrder(),parent.isActive()));
 
             List<CategoryDisplay>children=findSubCategoriesOfParent(parent.getSlug()).stream()
@@ -86,9 +90,18 @@ public class CategoryService {
         return categoryRepository.findAll().stream()
                 .collect(Collectors.toMap(Category::getSlug,Category::getName));
     }
+    public boolean isParentCategoryActive(String parentSlug){
+        Optional<Category> category=categoryRepository.findBySlug(parentSlug);
+        return  category.isPresent() &&
+                category.get().isActive()&&
+                normalizeParentSlug(category.get().getParentSlug()).isEmpty();
+    }
     public boolean isSubCategory(String categorySlug){
         Optional<Category> category=categoryRepository.findBySlug(categorySlug);
-        return category.isPresent()  && category.get().isActive() && !normalizeParentSlug(category.get().getParentSlug()).isEmpty();
+        return category.isPresent()  &&
+                category.get().isActive() &&
+                !normalizeParentSlug(category.get().getParentSlug()).isEmpty()
+                && isParentCategoryActive(category.get().getParentSlug());
     }
     public Optional<Category> findBySlug(String slug) {
         return categoryRepository.findBySlug(slug);
